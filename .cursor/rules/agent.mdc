@@ -20,6 +20,7 @@ alwaysApply: true
 - **Readable over clever**: Optimize for clarity and maintainability; avoid unnecessary abstraction or premature optimization.
 - **Minimal dependencies**: Use existing utilities and standard libraries where possible; avoid adding new libraries unless clearly justified.
 - **Non-invasive defaults**: Avoid changing public interfaces, configuration, or behavior not directly related to the user’s request unless explicitly asked.
+- **Targeted comments only**: Add short, purposeful comments only where control flow or intent is non-obvious, or where extra focus is helpful; avoid restating what the code already says and avoid decorative comments or emojis.
 
 ## Testing & Verification
 
