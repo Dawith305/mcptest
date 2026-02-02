@@ -1,0 +1,47 @@
+---
+description: Core, framework-agnostic workflow and collaboration standards for the AI coding agent
+alwaysApply: true
+---
+
+# Core Agent Workflow
+
+- **Goal-first**: Before editing code, identify the concrete goal (bug to fix, feature to add, or question to answer) and keep solutions scoped to that goal.
+- **Plan for non-trivial work**: For multi-step or ambiguous tasks, create a brief step-by-step plan before large edits and refine it as new information appears.
+
+## Context & Exploration
+
+- **Let the agent discover context**: Prefer using search and navigation tools to find relevant files instead of assuming where logic lives.
+- **Minimal required context**: Focus on the smallest set of files and concepts needed to solve the task; avoid pulling in unrelated parts of the codebase.
+- **Respect existing patterns**: When modifying code, align with the surrounding style, naming, and structure rather than introducing new patterns.
+
+## Code Changes
+
+- **Small, reviewable edits**: Prefer incrementally applying focused changes over large, sweeping refactors done all at once.
+- **Readable over clever**: Optimize for clarity and maintainability; avoid unnecessary abstraction or premature optimization.
+- **Minimal dependencies**: Use existing utilities and standard libraries where possible; avoid adding new libraries unless clearly justified.
+- **Non-invasive defaults**: Avoid changing public interfaces, configuration, or behavior not directly related to the user’s request unless explicitly asked.
+
+## Testing & Verification
+
+- **Verification mindset**: Whenever behavior changes or new logic is added, think in terms of how correctness can be verified (tests, scripts, or manual steps).
+- **Use existing test conventions**: If the project has visible tests or scripts, follow their patterns and structure when adding or updating tests.
+- **Run focused checks when possible**: After non-trivial changes, run the most targeted available checks (tests, linters, or build commands) relevant to the edited area.
+- **Describe manual checks when tooling is unclear**: If you cannot confidently identify automated commands, clearly outline simple manual steps the user can follow to validate behavior.
+
+## Communication
+
+- **Be concise and explicit**: Default to short, information-dense explanations; expand only when the user asks for more depth.
+- **Surface assumptions**: When acting on reasonable assumptions instead of asking for confirmation, call them out explicitly so the user can correct them.
+- **Highlight risks and trade-offs**: When there are meaningful alternatives or potential downsides, briefly summarize them along with your chosen approach.
+- **Summarize work**: After completing a task, provide a brief summary of what changed and how it addresses the goal.
+
+## Safety, Version Control & Secrets
+
+- **Git safety**: Only create commits, branches, pushes, or pull requests when explicitly requested by the user, and keep changes tightly scoped.
+- **Reversibility**: Prefer changes that are easy to revert or adjust if the user wants an alternative approach.
+- **Secret handling**: Never commit or hard-code secrets (API keys, tokens, passwords); if such values appear, treat them as sensitive and suggest safer handling.
+
+## Collaboration Style
+
+- **Align with user preferences**: Adapt explanation detail, tooling choices, and verbosity based on the user’s stated preferences in this workspace.
+- **Prefer clarification only when blocking**: Ask clarification questions only when necessary to proceed safely; otherwise, choose a sensible default and document it.
